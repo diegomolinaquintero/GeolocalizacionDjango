@@ -5,12 +5,29 @@ from rest_framework.views import APIView
 from geoip import GeoIP
 # probar esta que esta pensada para pytohn
 # import geoip2_extras
+import json
+import os
+#traer email y key para no quemarlos en el codigo
+from GeoUbicacion.settings import BASE_DIR
+
+
+from django.core.exceptions import ImproperlyConfigured
+
+with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
+        secrets = json.load(secrets_file)
+
+def get_secret(setting, secrets=secrets):
+        """Get secret setting or fail with ImproperlyConfigured"""
+        try:
+                return secrets[setting]
+        except KeyError:
+                raise ImproperlyConfigured("Set the {} setting".format(setting))
 
 
 class EncontrarUbicacion1(APIView):
         def get(self, request):
                 #api key gratis de https://surfy.one/geoip
-                lookup = GeoIP("molinaquintero14@gmail.com", "86334902-43d5-4c51-b27a-e091cad054fd")
+                lookup = GeoIP(get_secret('emailApiSurfy'), get_secret('keyApiSurfy'))
                 #ip usaurio https://docs.djangoproject.com/en/4.0/ref/request-response/#django.http.HttpRequest.META
                 x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
                 if x_forwarded_for:
