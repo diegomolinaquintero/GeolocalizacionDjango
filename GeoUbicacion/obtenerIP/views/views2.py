@@ -22,6 +22,21 @@ def get_secret(setting, secrets=secrets):
                 raise ImproperlyConfigured("Set the {} setting".format(setting))
 
 class EncontrarUbicacion2(APIView):
+        """Encuentra tu sector o barrio del valle de aburra y area
+        metropolitada desde donde te conectas.
+
+        Esta es una forma de realizar la busqueda.
+
+        Notes
+        -----
+        Usando Remote addr obtenemos tu ip y con Surfy lo convertimos latitud y longitud
+        y con Nominatim lo convertimos en json.
+
+        Al convertir puedes tener muchos datos importantes pero para este codigo
+        solo mostramos el sector y/o barrio.
+
+        Puedes modificar la funcion para mostrar mas datos.
+        """
         def get(self, request):
                 #api key gratis de https://surfy.one/geoip
                 lookup = GeoIP(get_secret('emailApiSurfy'), get_secret('keyApiSurfy'))

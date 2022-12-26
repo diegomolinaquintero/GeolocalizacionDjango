@@ -1,0 +1,62 @@
+info:
+  description: ''
+  title: ''
+  version: ''
+openapi: 3.0.0
+paths:
+  /obtenerIP/:
+    get:
+      description: 'Encuentra tu sector o barrio del valle de aburra y area
+
+        metropolitada desde donde te conectas.
+
+
+        Esta es una forma de realizar la busqueda.
+
+
+        Notes
+
+        -----
+
+        Usando Remote addr obtenemos tu ip y con Surfy lo convertimos en json.
+
+
+        Al convertir puedes tener muchos datos importantes pero para este codigo
+
+        solo mostramos el sector y/o barrio.
+
+
+        Puedes modificar la funcion para mostrar mas datos.'
+      operationId: obtenerIP_list
+      tags:
+      - obtenerIP
+  /obtenerIP2/:
+    get:
+      description: 'Encuentra tu sector o barrio del valle de aburra y area
+
+        metropolitada desde donde te conectas.
+
+
+        Esta es una forma de realizar la busqueda.
+
+
+        Notes
+
+        -----
+
+        Usando Remote addr obtenemos tu ip y con Surfy lo convertimos latitud y longitud
+
+        y con Nominatim lo convertimos en json.
+
+
+        Al convertir puedes tener muchos datos importantes pero para este codigo
+
+        solo mostramos el sector y/o barrio.
+
+
+        Puedes modificar la funcion para mostrar mas datos.'
+      operationId: obtenerIP2_list
+      tags:
+      - obtenerIP2
+servers:
+- url: ''
