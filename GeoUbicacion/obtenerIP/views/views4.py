@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 #traer email y key para no quemarlos en el codigo
 import json
 import os
-from geopy.geocoders import Nominatim
+
 from GeoUbicacion.settings import BASE_DIR
 
 
@@ -20,7 +20,7 @@ def get_secret(setting, secrets=secrets):
         except KeyError:
                 raise ImproperlyConfigured("Set the {} setting".format(setting))
 
-class EncontrarUbicacion3(APIView):
+class EncontrarUbicacion4(APIView):
         """Encuentra tu sector o barrio del valle de aburra y area
         metropolitada desde donde te conectas.
 
@@ -44,7 +44,11 @@ class EncontrarUbicacion3(APIView):
                 longitude = geolocate['location']['lng']
                 geodirection = gmaps.reverse_geocode((latitude, longitude))
                 address = geodirection[0]['formatted_address']
-                return HttpResponse("Estas cerca de : {}".format(address))
+                Municipio = geodirection[0]['formatted_address'].split(",")
+                Ciudad = Municipio[1]
+                # nombre del sector
+                Sector= Municipio[2]
+                return HttpResponse("Estas cerca de : {} el municipio es {} y el barrio es {}".format(address,Ciudad,Sector))
         
         
 
