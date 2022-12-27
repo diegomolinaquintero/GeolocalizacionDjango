@@ -40,23 +40,12 @@ class EncontrarUbicacion3(APIView):
                 gmaps = googlemaps.Client(key='AIzaSyCWvPEoQjPCqKCcgHfUSoaMmdFa48Y_8B8')
                 # Look up an address with reverse geocoding
                 geolocate = gmaps.geolocate()
-                
                 latitude = geolocate['location']['lat']
                 longitude = geolocate['location']['lng']
-                # Coordenadas de la ubicación (latitud, longitud)
-                coordinates = (latitude, longitude)
-                # Crea una instancia de Nominatim
-                geolocator = Nominatim(user_agent="pronostico")
-                # Obtiene la dirección a partir de las coordenadas
-                location = geolocator.reverse(coordinates)
-                # informacion del municipio
-                InformacionGeneralMunicipio = location.raw
-                # informacion del sector de la ubicaci'on
-                Municipio = location.raw['display_name'].split(",")
-                # nombre del sector
-                sector= Municipio[-6]
+                geodirection = gmaps.reverse_geocode((latitude, longitude))
+                address = geodirection[0]['formatted_address']
                 
-                return HttpResponse("Tu ubicacion es: {} google te  da esta info {} ".format(InformacionGeneralMunicipio, geolocate))
+                return HttpResponse("Estas cerca de : ".format(address))
         
         
 
