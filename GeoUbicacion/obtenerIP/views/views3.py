@@ -40,6 +40,7 @@ class EncontrarUbicacion3(APIView):
                 gmaps = googlemaps.Client(key='AIzaSyCWvPEoQjPCqKCcgHfUSoaMmdFa48Y_8B8')
                 # Look up an address with reverse geocoding
                 geolocate = gmaps.geolocate()
+                
                 latitude = geolocate['location']['lat']
                 longitude = geolocate['location']['lng']
                 # Coordenadas de la ubicación (latitud, longitud)
@@ -55,7 +56,7 @@ class EncontrarUbicacion3(APIView):
                 # nombre del sector
                 sector= Municipio[-6]
                 
-                return HttpResponse("Tu ubicacion es: {}".format(InformacionGeneralMunicipio))
+                return HttpResponse("Tu ubicacion es: {} google te  da esta info {} ".format(InformacionGeneralMunicipio, geolocate))
         
         
 
