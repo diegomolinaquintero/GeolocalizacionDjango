@@ -45,7 +45,7 @@ class EncontrarUbicacion3(APIView):
                 geodirection = gmaps.reverse_geocode((latitude, longitude))
                 address = geodirection[0]['formatted_address']
                 
-                return HttpResponse("Estas cerca de : ".format(address))
+                return HttpResponse("Estas cerca de : {}".format(address))
         
         
 
