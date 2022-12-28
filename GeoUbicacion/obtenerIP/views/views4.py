@@ -25,10 +25,9 @@ class EncontrarUbicacion4(APIView):
 
         Notes
         -----
-        Usando Remote addr obtenemos tu ip y con Surfy lo convertimos latitud y longitud
-        y con Nominatim lo convertimos en json.
+        Usando la api de google ubicamos el usuarios, te da el barrio , ciudad y el pronostico que ofrece el SIATA.
 
-        Al convertir puedes tener muchos datos importantes pero para este codigo
+        Puedes tener muchos datos importantes pero para este codigo
         solo mostramos el sector y/o barrio.
 
         Puedes modificar la funcion para mostrar mas datos.

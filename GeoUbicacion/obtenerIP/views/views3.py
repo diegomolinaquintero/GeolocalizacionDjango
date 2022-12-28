@@ -28,13 +28,7 @@ class EncontrarUbicacion3(APIView):
 
         Notes
         -----
-        Usando Remote addr obtenemos tu ip y con Surfy lo convertimos latitud y longitud
-        y con Nominatim lo convertimos en json.
-
-        Al convertir puedes tener muchos datos importantes pero para este codigo
-        solo mostramos el sector y/o barrio.
-
-        Puedes modificar la funcion para mostrar mas datos.
+        Mostrar la tu direccion, barrio, ciudad y departamento con la api de google.
         """
         def get(self, request):
                 gmaps = googlemaps.Client(key='AIzaSyCWvPEoQjPCqKCcgHfUSoaMmdFa48Y_8B8')
