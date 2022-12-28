@@ -18,7 +18,7 @@ def get_secret(setting, secrets=secrets):
         except KeyError:
                 raise ImproperlyConfigured("Set the {} setting".format(setting))
 
-class EncontrarUbicacion4(APIView):
+class EncontrarUbicacion5(APIView):
         """Encuentra tu sector o barrio del valle de aburra y area
         metropolitada desde donde te conectas.
 
@@ -34,6 +34,22 @@ class EncontrarUbicacion4(APIView):
         Puedes modificar la funcion para mostrar mas datos.
         """
         def get(self, request):
+            
+                pronosticoMedellinCentro = requests.get('https://siata.gov.co/data/siata_app/wrfmedCentro.json')
+                pronosticoMedellinOriente = requests.get('https://siata.gov.co/data/siata_app/wrfmedOriente.json')
+                pronosticoMedellinOccidente = requests.get('https://siata.gov.co/data/siata_app/wrfmedOccidente.json')
+                pronosticoPalmitas =requests.get('https://siata.gov.co/data/siata_app/wrfpalmitas.json')
+                pronosticoCaldas  = requests.get('https://siata.gov.co/data/siata_app/wrfcaldas.json')
+                pronosticoCopacabana = requests.get('https://siata.gov.co/data/siata_app/wrfcopacabana.json')
+                pronosticoEstrella = requests.get('https://siata.gov.co/data/siata_app/wrflaestrella.json')
+                pronosticoItagui = requests.get('https://siata.gov.co/data/siata_app/wrfitagui.json')
+                pronosticoBello = requests.get('https://siata.gov.co/data/siata_app/wrfbello.json')
+                pronosticoEnvigado = requests.get('https://siata.gov.co/data/siata_app/wrfenvigado.json')
+                pronosticoSabaneta = requests.get('https://siata.gov.co/data/siata_app/wrfsabaneta.json')
+                pronosticoBarbosa = requests.get('https://siata.gov.co/data/siata_app/wrfbarbosa.json')
+                pronosticoGirardota = requests.get('https://siata.gov.co/data/siata_app/wrfgirardota.json')
+                pronosticopronostico = 'default'
+                
                 gmaps = googlemaps.Client(key='AIzaSyCWvPEoQjPCqKCcgHfUSoaMmdFa48Y_8B8')
                 # Look up an address with reverse geocoding
                 geolocate = gmaps.geolocate()
@@ -60,43 +76,43 @@ class EncontrarUbicacion4(APIView):
                 pronostico = 'default'
                 #Palmitas
                 if any(element in MunicipioSinEspacios for element in set(Palmitas)):
-                    pronostico = 'el de Palmitas'
+                    pronostico = pronosticoPalmitas.json()
                 #Caldas
                 if any(element in MunicipioSinEspacios for element in set(Caldas)):
-                    pronostico = 'el de caldas'
+                    pronostico = pronosticoCaldas.json()
                 #Copacabana    
                 if any(element in MunicipioSinEspacios for element in set(Copacabana)):
-                    pronostico = 'Copacabana'
+                    pronostico = pronosticoCopacabana.json()
                 #Estrella
                 if any(element in MunicipioSinEspacios for element in set(Estrella)):
-                    pronostico = 'el de Estrella'
+                    pronostico = pronosticoEstrella.json()
                 #Itagui    
                 if any(element in MunicipioSinEspacios for element in set(Itagui)):
-                    pronostico = 'Itagui' 
+                    pronostico = pronosticoItagui.json()
                 #Bello
                 if any(element in MunicipioSinEspacios for element in set(Bello)):
-                    pronostico = 'el de Bello'
+                    pronostico = pronosticoBello.json()
                 #Envigado    
                 if any(element in MunicipioSinEspacios for element in set(Envigado)):
-                    pronostico = 'Envigado'
+                    pronostico = pronosticoEnvigado.json()
                 #Sabaneta
                 if any(element in MunicipioSinEspacios for element in set(Sabaneta)):
-                    pronostico = 'el de Sabaneta'
+                    pronostico = pronosticoSabaneta.json()
                 #Barbosa    
                 if any(element in MunicipioSinEspacios for element in set(Barbosa)):
-                    pronostico = 'Barbosa'
+                    pronostico = pronosticoBarbosa.json()
                 #Girardota    
                 if any(element in MunicipioSinEspacios for element in set(Girardota)):
-                    pronostico = 'Girardota' 
+                    pronostico = pronosticoGirardota.json()
                 #medellinOccidente   
                 if any(element in MunicipioSinEspacios for element in set(medellinOccidente)):
-                    pronostico = 'medellinOccidente'
+                    pronostico = pronosticoMedellinOccidente.json()
                 #medellinOriente    
                 if any(element in MunicipioSinEspacios for element in set(medellinOriente)):
-                    pronostico = 'medellinOriente'
+                    pronostico = pronosticoMedellinOriente.json()
                 #medellinCentro    
                 if any(element in MunicipioSinEspacios for element in set(medellinCentro)):
-                    pronostico = 'medellinCentro'
+                    pronostico = pronosticoMedellinCentro.json()
                 
                 return HttpResponse("Estas cerca de : {} y su pronostico es {}".format(address,pronostico))
         
