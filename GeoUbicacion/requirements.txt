@@ -1,6 +1,7 @@
 asgiref==3.6.0
 certifi==2022.12.7
 charset-normalizer==2.1.1
+collections2==0.3.0
 coreapi==2.3.3
 coreschema==0.0.4
 Django==4.1.4
