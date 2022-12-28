@@ -31,7 +31,7 @@ class EncontrarUbicacion3(APIView):
         Mostrar la tu direccion, barrio, ciudad y departamento con la api de google.
         """
         def get(self, request):
-                gmaps = googlemaps.Client(key='AIzaSyCWvPEoQjPCqKCcgHfUSoaMmdFa48Y_8B8')
+                gmaps = googlemaps.Client(key=get_secret('googleApiKeyPersonal'))
                 # Look up an address with reverse geocoding
                 geolocate = gmaps.geolocate()
                 latitude = geolocate['location']['lat']

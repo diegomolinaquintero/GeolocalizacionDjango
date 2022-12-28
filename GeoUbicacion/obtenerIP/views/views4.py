@@ -34,7 +34,7 @@ class EncontrarUbicacion4(APIView):
         Puedes modificar la funcion para mostrar mas datos.
         """
         def get(self, request):
-                gmaps = googlemaps.Client(key='AIzaSyCWvPEoQjPCqKCcgHfUSoaMmdFa48Y_8B8')
+                gmaps = googlemaps.Client(key=get_secret('googleApiKeyPersonal'))
                 # Look up an address with reverse geocoding
                 geolocate = gmaps.geolocate()
                 latitude = geolocate['location']['lat']

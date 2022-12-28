@@ -50,7 +50,7 @@ class EncontrarUbicacion5(APIView):
                 pronosticoGirardota = requests.get('https://siata.gov.co/data/siata_app/wrfgirardota.json')
                 pronosticopronostico = 'default'
                 
-                gmaps = googlemaps.Client(key='AIzaSyCWvPEoQjPCqKCcgHfUSoaMmdFa48Y_8B8')
+                gmaps = googlemaps.Client(key=get_secret('googleApiKeyPersonal'))
                 # Look up an address with reverse geocoding
                 geolocate = gmaps.geolocate()
                 latitude = geolocate['location']['lat']
